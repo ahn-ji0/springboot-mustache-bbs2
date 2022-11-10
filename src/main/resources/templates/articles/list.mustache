@@ -1,0 +1,23 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#articles}}
+    <tr>
+        <th scope="row">{{id}}</th>
+        <td><a href="/articles/{{id}}">{{title}}</a></td>
+        <td>{{content}}</td>
+    </tr>
+    {{/articles}}
+    </tbody>
+</table>
+<div class="d-grid gap-2">
+    <a href="/articles/new" class="btn btn-outline-success">추가</a>
+</div>
+{{>layouts/footer}}
