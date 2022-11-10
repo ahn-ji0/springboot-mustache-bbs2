@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+// @AllArgsConstructor 하면 no primary or single constructor 오류
 public class ArticleDto {
     private Long id;
     private String title;
