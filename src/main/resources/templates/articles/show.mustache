@@ -1,7 +1,7 @@
 {{>layouts/header}}
+{{#article}}
 <table class="table">
     <tbody>
-    {{#article}}
         <tr>
             <th scope="row">id</th>
             <td>{{id}}</td>
@@ -14,7 +14,9 @@
             <th scope="row">content</th>
             <td>{{content}}</td>
         </tr>
-    {{/article}}
     </tbody>
 </table>
+<a href="/articles/{{id}}/delete" class="btn btn-danger">삭제</a>
+<a href="/articles/list" class="btn btn-success">목록으로</a>
+{{/article}}
 {{>layouts/footer}}
