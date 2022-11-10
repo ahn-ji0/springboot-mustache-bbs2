@@ -76,4 +76,23 @@ public class ArticleController {
             return "articles/error";
         }
     }
+
+    //edit
+    @GetMapping("/{id}/edit")
+    public String editSingle(@PathVariable Long id, Model model){
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if(!optionalArticle.isEmpty()){
+            model.addAttribute("article",optionalArticle.get());
+            return "articles/edit";
+        }
+        else {
+            return "articles/error";
+        }
+    }
+    @PostMapping("/{id}/update")
+    public String updateSingle(@PathVariable Long id, ArticleDto articleDto){
+        log.info(articleDto.getTitle(),articleDto.getContent());
+        articleRepository.save(articleDto.toEntity(id));
+        return "redirect:/articles/list";
+    }
 }
