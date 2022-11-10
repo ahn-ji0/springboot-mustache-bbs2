@@ -1,7 +1,14 @@
 {{>layouts/header}}
-<form action="/articles/post", method="post">
-    <input type="text" name="title">
-    <input type="text" name="content">
-    <button type="submit">제출</button>
+<form class = "container" action="/articles/post" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" id="title" >
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Password</label>
+        <input type="text" class="form-control" name="content" id="content">
+    </div>
+    <button type="submit" class="btn btn-primary">제출</button>
+    <a href="/articles/list" class="btn btn-success">목록보기</a>
 </form>
 {{>layouts/footer}}
