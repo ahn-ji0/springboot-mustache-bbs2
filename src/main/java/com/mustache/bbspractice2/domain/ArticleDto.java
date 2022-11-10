@@ -4,15 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-// @AllArgsConstructor 하면 no primary or single constructor 오류
+@AllArgsConstructor
 public class ArticleDto {
     private String title;
     private String content;
-
-    public ArticleDto(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
 
     public ArticleEntity toEntity(){
         return new ArticleEntity(title,content);
