@@ -40,7 +40,7 @@ public class ArticleController {
     public String postNew(ArticleDto articleDto){
         log.info("title: {}, content: {}",articleDto.getTitle(),articleDto.getContent());
         articleRepository.save(articleDto.toEntity());
-        return "redirect:/articles/new";
+        return "redirect:/articles/list";
     }
 
     // get all
@@ -64,4 +64,16 @@ public class ArticleController {
         }
     }
 
+    //delete
+    @GetMapping("/{id}/delete")
+    public String deleteSingle(@PathVariable Long id, Model model){
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if(!optionalArticle.isEmpty()){
+            articleRepository.delete(optionalArticle.get());
+            return "redirect:/articles/list";
+        }
+        else {
+            return "articles/error";
+        }
+    }
 }
