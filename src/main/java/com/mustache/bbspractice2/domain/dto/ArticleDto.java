@@ -1,5 +1,6 @@
-package com.mustache.bbspractice2.domain;
+package com.mustache.bbspractice2.domain.dto;
 
+import com.mustache.bbspractice2.domain.entity.ArticleEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

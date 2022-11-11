@@ -1,7 +1,7 @@
 package com.mustache.bbspractice2.controller;
 
-import com.mustache.bbspractice2.domain.ArticleDto;
-import com.mustache.bbspractice2.domain.ArticleEntity;
+import com.mustache.bbspractice2.domain.dto.ArticleDto;
+import com.mustache.bbspractice2.domain.entity.ArticleEntity;
 import com.mustache.bbspractice2.respository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
