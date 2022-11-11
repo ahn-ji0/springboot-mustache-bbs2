@@ -25,7 +25,7 @@ public class HospitalController {
         this.hospitalRepository = hospitalRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String listAll(Model model, @PageableDefault(size = 20, sort="id",direction=Sort.Direction.ASC) Pageable pageable){
         Page<HospitalEntity> hospitals = hospitalRepository.findAll(pageable);
         //log.info(hospitals.getPageable().toString()); = Page request [number: 0, size 20, sort: id: ASC]
