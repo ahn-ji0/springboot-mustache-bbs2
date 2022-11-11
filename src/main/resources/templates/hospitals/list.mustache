@@ -1,0 +1,20 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">hospital name</th>
+        <th scope="col">address</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#hospitals}}
+    <tr>
+        <th scope="row">{{id}}</th>
+        <td style="width: 30%">{{hospitalName}}</a></td>
+        <td>{{fullAddress}}</td>
+    </tr>
+    {{/hospitals}}
+    </tbody>
+</table>
+{{>layouts/footer}}
