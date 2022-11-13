@@ -16,8 +16,33 @@
         </tr>
     </tbody>
 </table>
-<a href="/articles/list" class="btn btn-success">목록으로</a>
 <a href="/articles/{{id}}/delete" class="btn btn-danger" style="float:right">삭제</a>
 <a href="/articles/{{id}}/edit" class="btn btn-primary" style="float:right">수정</a>
+
+<!--comment show-->
+<table class="table">
+    <tbody>
+    {{#comments}}
+    <tr>
+        <th scope="row">{{userName}}</th>
+        <td>{{commentContent}}</td>
+    </tr>
+    {{/comments}}
+    </tbody>
+</table>
+<!--new comment form-->
+<form class="container" action="/articles/comment/{{id}}" method="post">
+    <div class="mb-3">
+        <label for="userName" class="form-label">이름</label>
+        <input type="text" class="form-control" name="userName" id="userName" >
+    </div>
+    <div class="mb-3">
+        <label for="commentContent" class="form-label">댓글 내용</label>
+        <input type="text" class="form-control" name="commentContent" id="commentContent">
+    </div>
+    <button type="submit" class="btn btn-primary">제출</button>
+</form>
+<a href="/articles/list" class="btn btn-success">목록으로</a>
+
 {{/article}}
 {{>layouts/footer}}
