@@ -1,8 +1,11 @@
 package com.mustache.bbspractice2.controller;
 
 import com.mustache.bbspractice2.domain.dto.ArticleDto;
+import com.mustache.bbspractice2.domain.dto.CommentDto;
 import com.mustache.bbspractice2.domain.entity.ArticleEntity;
+import com.mustache.bbspractice2.domain.entity.CommentEntity;
 import com.mustache.bbspractice2.respository.ArticleRepository;
+import com.mustache.bbspractice2.respository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,11 @@ import java.util.Optional;
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
+    private final CommentRepository commentRepository;
 
-    public ArticleController(ArticleRepository articleRepository) {
+    public ArticleController(ArticleRepository articleRepository, CommentRepository commentRepository) {
         this.articleRepository = articleRepository;
+        this.commentRepository = commentRepository;
     }
 
     @GetMapping("")
@@ -56,7 +61,11 @@ public class ArticleController {
     public String findSingle(@PathVariable Long id, Model model){
         Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
         if(!optionalArticle.isEmpty()){
+            ArticleEntity articleEntity = optionalArticle.get();
             model.addAttribute("article",optionalArticle.get());
+            //해당 article의 comment 불러와서 넘기기
+            List<CommentEntity> comments = commentRepository.findAllByArticleEntity(articleEntity);
+            model.addAttribute("comments",comments);
             return "articles/show";
         }
         else {
@@ -94,5 +103,22 @@ public class ArticleController {
         log.info(articleDto.getTitle(),articleDto.getContent());
         articleRepository.save(articleDto.toEntity(id));
         return "redirect:/articles/list";
+    }
+
+    //comment
+    @PostMapping("/comment/{id}")
+    public String postNewComment(@PathVariable Long id, CommentDto commentDto, Model model){
+        log.info(commentDto.getUserName(), commentDto.getCommentContent());
+        Optional<ArticleEntity> optionalArticle = articleRepository.findById(id);
+        if(!optionalArticle.isEmpty()){
+            //save하는 과정
+            ArticleEntity articleEntity = optionalArticle.get();
+            CommentEntity commentEntity = commentDto.toEntity(articleEntity);
+            commentRepository.save(commentEntity);
+            return "redirect:/articles/{id}";
+        }
+        else {
+            return "articles/error";
+        }
     }
 }
