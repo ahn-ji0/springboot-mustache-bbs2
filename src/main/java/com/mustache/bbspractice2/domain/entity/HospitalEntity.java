@@ -24,4 +24,7 @@ public class HospitalEntity {
 
     @Column(name = "business_type_name")
     private String businessTypeName;
+
+    @Column(name = "total_number_of_beds")
+    private int totalNumberOfBeds;
 }
