@@ -28,4 +28,29 @@ class HospitalRepositoryTest {
             System.out.println(hospital.getHospitalName());
         }
     }
+가
+    @Test
+    @DisplayName("주소에 포함되어 있는지(containing)")
+    void findByRoadNameAddressContaining(){
+        List<HospitalEntity> hospitals = hospitalRepository.findByRoadNameAddressContaining("경기도 수원시");
+        for(var hospital : hospitals){
+            System.out.println(hospital.getHospitalName()+"|"+hospital.getRoadNameAddress());
+        }
+    }
+    @Test
+    @DisplayName("이름 시작(starts with)")
+    void startsWith(){
+        List<HospitalEntity> hospitals = hospitalRepository.findByHospitalNameStartsWith("연세");
+        for(var hospital : hospitals){
+            System.out.println(hospital.getHospitalName());
+        }
+    }
+    @Test
+    @DisplayName("이름 끝(ends with)")
+    void endsWith(){
+        List<HospitalEntity> hospitals = hospitalRepository.findByHospitalNameEndsWith("병원");
+        for(var hospital : hospitals){
+            System.out.println(hospital.getHospitalName());
+        }
+    }
 }
