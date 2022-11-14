@@ -28,7 +28,7 @@ class HospitalRepositoryTest {
             System.out.println(hospital.getHospitalName());
         }
     }
-가
+
     @Test
     @DisplayName("주소에 포함되어 있는지(containing)")
     void findByRoadNameAddressContaining(){
@@ -53,4 +53,14 @@ class HospitalRepositoryTest {
             System.out.println(hospital.getHospitalName());
         }
     }
+    @Test
+    @DisplayName("between 병상수 조회")
+    void between(){
+        List<HospitalEntity> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10,20);
+        for(var hospital : hospitals){
+            System.out.println(hospital.getHospitalName()+": "+hospital.getTotalNumberOfBeds());
+        }
+
+    }
+
 }
