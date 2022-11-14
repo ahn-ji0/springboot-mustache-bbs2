@@ -62,5 +62,14 @@ class HospitalRepositoryTest {
         }
 
     }
+    @Test
+    @DisplayName("between 병상수 조회 내림차순")
+    void betweenDesc(){
+        List<HospitalEntity> hospitals = hospitalRepository.findByTotalNumberOfBedsBetweenOrderByTotalNumberOfBedsDesc(10,20);
+        for(var hospital : hospitals){
+            System.out.println(hospital.getHospitalName()+": "+hospital.getTotalNumberOfBeds());
+        }
+
+    }
 
 }
