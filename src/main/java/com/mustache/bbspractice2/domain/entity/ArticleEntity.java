@@ -1,5 +1,6 @@
 package com.mustache.bbspractice2.domain.entity;
 
+import com.mustache.bbspractice2.domain.dto.ArticleDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,8 @@ public class ArticleEntity {
     public ArticleEntity(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+    public static ArticleDto of(ArticleEntity articleEntity){
+        return new ArticleDto(articleEntity.getId(), articleEntity.getTitle(),articleEntity.getContent());
     }
 }
