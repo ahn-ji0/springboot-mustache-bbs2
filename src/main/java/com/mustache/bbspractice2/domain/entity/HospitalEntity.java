@@ -1,5 +1,6 @@
 package com.mustache.bbspractice2.domain.entity;
 
+import com.mustache.bbspractice2.domain.dto.HospitalResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,13 @@ public class HospitalEntity {
 
     @Column(name = "total_number_of_beds")
     private int totalNumberOfBeds;
+
+    @Column(name = "business_status_code")
+    private Integer businessStatusCode;
+
+    public static HospitalResponse of(HospitalEntity hospitalEntity) {
+        return new HospitalResponse(hospitalEntity.getId(), hospitalEntity.getHospitalName(),
+                hospitalEntity.getRoadNameAddress(), hospitalEntity.getBusinessTypeName(),
+                hospitalEntity.getTotalNumberOfBeds());
+    }
 }
