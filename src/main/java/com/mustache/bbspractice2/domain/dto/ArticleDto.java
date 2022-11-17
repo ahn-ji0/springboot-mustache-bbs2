@@ -1,13 +1,13 @@
 package com.mustache.bbspractice2.domain.dto;
 
 import com.mustache.bbspractice2.domain.entity.ArticleEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @Builder
+@NoArgsConstructor
+@Setter
 public class ArticleDto {
     private Long id;
     private String title;
