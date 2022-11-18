@@ -33,8 +33,8 @@ public class HospitalEntity {
     private Integer businessStatusCode;
 
     public static HospitalResponse of(HospitalEntity hospitalEntity) {
-        return new HospitalResponse(hospitalEntity.getId(), hospitalEntity.getHospitalName(),
-                hospitalEntity.getRoadNameAddress(), hospitalEntity.getBusinessTypeName(),
+        return new HospitalResponse(hospitalEntity.getId(), hospitalEntity.getRoadNameAddress(),
+                hospitalEntity.getHospitalName(), hospitalEntity.getBusinessTypeName(),
                 hospitalEntity.getTotalNumberOfBeds());
     }
 }
