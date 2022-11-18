@@ -10,7 +10,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+가import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,5 +37,10 @@ public class HospitalController {
         model.addAttribute("previousPage", hospitals.previousOrFirstPageable().getPageNumber());
         model.addAttribute("nextPage",hospitals.nextOrLastPageable().getPageNumber());
         return "hospitals/list";
+    }
+    @GetMapping("/search")
+    public String searchByLocation(@RequestParam String keyword){
+        log.info(keyword);
+        return "";
     }
 }
