@@ -10,7 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-가import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,19 +28,17 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public String listAll(Model model, @PageableDefault(size = 20, sort="id",direction=Sort.Direction.ASC) Pageable pageable){
-        Page<HospitalEntity> hospitals = hospitalRepository.findAll(pageable);
+    public String listAll(@RequestParam(required = false) String keyword, Model model, @PageableDefault(size = 20, sort="id",direction=Sort.Direction.ASC) Pageable pageable){
+        log.info(keyword);
+        Page<HospitalEntity> hospitals = hospitalRepository.findByRoadNameAddressContaining(keyword, pageable);
         //log.info(hospitals.getPageable().toString()); = Page request [number: 0, size 20, sort: id: ASC]
         //log.info(String.valueOf(hospitals.getNumberOfElements())); = 20
         //log.info(String.valueOf(hospitals.getTotalPages())); = 4951
         model.addAttribute("hospitals",hospitals.getContent());
         model.addAttribute("previousPage", hospitals.previousOrFirstPageable().getPageNumber());
         model.addAttribute("nextPage",hospitals.nextOrLastPageable().getPageNumber());
+        model.addAttribute("keyword",keyword);
         return "hospitals/list";
     }
-    @GetMapping("/search")
-    public String searchByLocation(@RequestParam String keyword){
-        log.info(keyword);
-        return "";
-    }
+
 }
