@@ -29,7 +29,12 @@ class HospitalServiceTest {
     @DisplayName("영업중 테스트")
     void getHospital(){
         Integer id = 3;
-        HospitalEntity hospitalEntity = new HospitalEntity(3,"광주광역시 북구 설죽로 495, 3층 (일곡동)","사랑이가득한치과의원","치과의원",0,13);
+        HospitalEntity hospitalEntity = HospitalEntity.builder()
+                .id(3)
+                .hospitalName("사랑이가득한치과의원")
+                .businessStatusCode(13)
+                .build();
+
         Mockito.when(hospitalRepository.findById(id))
                 .thenReturn(Optional.of(hospitalEntity));
 
@@ -41,7 +46,12 @@ class HospitalServiceTest {
     @DisplayName("폐업 테스트")
     void getHospital2(){
         Integer id = 3;
-        HospitalEntity hospitalEntity = new HospitalEntity(3,"광주광역시 북구 설죽로 495, 3층 (일곡동)","사랑이가득한치과의원","치과의원",0,3);
+        HospitalEntity hospitalEntity = HospitalEntity.builder()
+                .id(3)
+                .hospitalName("사랑이가득한치과의원")
+                .businessStatusCode(3)
+                .build();
+
         Mockito.when(hospitalRepository.findById(id))
                 .thenReturn(Optional.of(hospitalEntity));
         HospitalResponse hospitalResponse = hospitalService.getHospital(id);
