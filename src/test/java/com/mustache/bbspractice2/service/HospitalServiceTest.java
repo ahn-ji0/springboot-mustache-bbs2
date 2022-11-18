@@ -1,4 +1,4 @@
-류package com.mustache.bbspractice2.service;
+package com.mustache.bbspractice2.service;
 
 import com.mustache.bbspractice2.domain.dto.HospitalResponse;
 import com.mustache.bbspractice2.domain.entity.HospitalEntity;
