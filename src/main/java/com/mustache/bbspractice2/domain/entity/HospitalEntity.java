@@ -2,6 +2,7 @@ package com.mustache.bbspractice2.domain.entity;
 
 import com.mustache.bbspractice2.domain.dto.HospitalResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor // 안하면 findAll 할때 no default constructor for entity 오류
 @Getter
 @Entity
+@Builder
 @Table(name = "hospital")
 public class HospitalEntity {
     @Id
